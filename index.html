@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beth Shalom Synagogue</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-card {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .logo-card img {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .logo-card h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .date-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            text-align: center;
+        }
+
+        .date-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .date-item {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-weight: bold;
+            min-width: 150px;
+        }
+
+        .prayer-card {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        .card-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .prayer-time {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.1em;
+        }
+
+        .prayer-time:last-child {
+            border-bottom: none;
+        }
+
+        .prayer-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .prayer-hour {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .text-field {
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2c3e50;
+            background: rgba(255, 255, 255, 0.6);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+        }
+
+        .contact-methods {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            min-width: 250px;
+            justify-content: center;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+        }
+
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .gallery-card {
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+        }
+
+        .carousel-container {
+            position: relative;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .carousel-wrapper {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-nav:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .carousel-prev {
+            left: 15px;
+        }
+
+        .carousel-next {
+            right: 15px;
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ccc;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #333;
+        }
+
+        .rental-card {
+            background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
+        }
+
+        .rental-dropdown {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1.1em;
+            background: white;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .rental-info {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .rental-info.show {
+            display: block;
+        }
+
+        .rental-detail {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 8px 12px;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .rental-form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 25px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .rental-form.show {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .date-info {
+                flex-direction: column;
+            }
+            
+            .rental-info {
+                flex-direction: column;
+            }
+            
+            .contact-item {
+                min-width: 200px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2em;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="website-container">
+        <div class="loading">Loading synagogue information...</div>
+    </div>
+
+    <script>
+        let carouselIndex = 0;
+        let configData = null;
+
+        // Embedded JSON configuration (replace this with your actual config.json content)
+        const embeddedConfig = {
+            "templateId": "traditional",
+            "logoSettings": {
+                "visible": true,
+                "order": 1,
+                "logoUrl": "Logo (2).png"
+            },
+            "dateSettings": {
+                "visible": true,
+                "order": 2,
+                "showHebrewDate": true,
+                "showGregorianDate": true,
+                "showMoonPrayer": true
+            },
+            "dailySettings": {
+                "visible": true,
+                "order": 3,
+                "fields": [
+                    {
+                        "key": "Shacharit",
+                        "displayType": "key-value",
+                        "timeSettings": {
+                            "zmanType": "sunrise",
+                            "offset": -15,
+                            "rounding": "down"
+                        },
+                        "scheduling": null
+                    },
+                    {
+                        "key": "Mincha",
+                        "displayType": "key-value",
+                        "value": "18:30",
+                        "scheduling": null
+                    }
+                ]
+            },
+            "shabbatSettings": {
+                "visible": true,
+                "order": 4,
+                "fields": [
+                    {
+                        "key": "Kabbalat Shabbat",
+                        "displayType": "key-value",
+                        "timeSettings": {
+                            "zmanType": "sunset",
+                            "offset": -20,
+                            "rounding": "down"
+                        },
+                        "scheduling": null
+                    }
+                ]
+            },
+            "holidaySettings": {
+                "visible": true,
+                "order": 5,
+                "fields": [
+                    {
+                        "displayType": "text",
+                        "text": "Special Holiday Services",
+                        "scheduling": {
+                            "startDate": "2025-09-15",
+                            "endDate": "2025-10-15"
+                        }
+                    }
+                ]
+            },
+            "contactSettings": {
+                "visible": true,
+                "order": 6,
+                "whatsappGroup": {
+                    "enabled": true,
+                    "link": "https://web.whatsapp.com/",
+                    "icon": "https://lrrwcfctpgrhfjrlornj.supabase.co/storage/v1/object/public/icons//whatsapp.png"
+                },
+                "whatsappPrivate": {
+                    "enabled": true,
+                    "link": "https://web.whatsapp.com/",
+                    "icon": "https://lrrwcfctpgrhfjrlornj.supabase.co/storage/v1/object/public/icons//whatsapp.png"
+                },
+                "phone": {
+                    "enabled": true,
+                    "link": "tel:+972528314347",
+                    "icon": "📞"
+                },
+                "waze": {
+                    "enabled": true,
+                    "link": "https://ul.waze.com/ul?ll=32.07159274%2C34.84708786",
+                    "icon": "🗺️"
+                }
+            },
+            "gallerySettings": {
+                "visible": true,
+                "order": 7,
+                "images": [
+                    {
+                        "id": "img1",
+                        "url": "https://images.unsplash.com/photo-1548625149-fc4a29cf7092?w=800",
+                        "caption": "Our beautiful sanctuary"
+                    },
+                    {
+                        "id": "img2",
+                        "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800",
+                        "caption": "Torah reading ceremony"
+                    },
+                    {
+                        "id": "img3",
+                        "url": "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800",
+                        "caption": "Community Shabbat dinner"
+                    }
+                ]
+            },
+            "rentalSettings": {
+                "visible": true,
+                "order": 8,
+                "spaces": [
+                    {
+                        "name": "Main Sanctuary",
+                        "capacity": 250,
+                        "availableHours": "Sunday-Thursday: 9:00-22:00"
+                    },
+                    {
+                        "name": "Social Hall",
+                        "capacity": 100,
+                        "availableHours": "Sunday-Thursday: 10:00-23:00"
+                    }
+                ]
+            }
+        };
+
+        // Load JSON configuration
+        async function loadConfig() {
+            try {
+                // Try to fetch external config.json first
+                const response = await fetch('./config.json');
+                if (response.ok) {
+                    configData = await response.json();
+                } else {
+                    throw new Error('External config not found');
+                }
+            } catch (error) {
+                // Fall back to embedded config
+                console.log('Using embedded configuration');
+                configData = embeddedConfig;
+            }
+            generateWebsite();
+        }
+
+        // Generate random time for timeSettings
+        function generateRandomTime() {
+            const hours = Math.floor(Math.random() * 12) + 6; // 6-17 (6am-5pm)
+            const minutes = Math.floor(Math.random() * 4) * 15; // 0, 15, 30, 45
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+        }
+
+        // Check if current date is within scheduling range
+        function isWithinSchedule(scheduling) {
+            if (!scheduling) return true;
+            
+            const today = new Date();
+            const startDate = new Date(scheduling.startDate);
+            const endDate = new Date(scheduling.endDate);
+            
+            return today >= startDate && today <= endDate;
+        }
+
+        // Generate Hebrew date (mock)
+        function getHebrewDate() {
+            const hebrewMonths = ['ניסן', 'אייר', 'סיון', 'תמוז', 'אב', 'אלול', 'תשרי', 'חשון', 'כסלו', 'טבת', 'שבט', 'אדר'];
+            const day = Math.floor(Math.random() * 29) + 1;
+            const month = hebrewMonths[Math.floor(Math.random() * hebrewMonths.length)];
+            const year = 5785;
+            return `${day} ${month} ${year}`;
+        }
+
+        // Create logo card
+        function createLogoCard(settings) {
+            if (!settings.visible) return '';
+            
+            return `
+                <div class="card logo-card" style="order: ${settings.order}">
+                    <img src="${settings.logoUrl}" alt="Synagogue Logo" onerror="this.style.display='none'">
+                    <h1>Beth Shalom Synagogue</h1>
+                    <p>Welcome to our community</p>
+                </div>
+            `;
+        }
+
+        // Create date card
+        function createDateCard(settings) {
+            if (!settings.visible) return '';
+            
+            const today = new Date();
+            const gregorianDate = today.toLocaleDateString('en-US', { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            });
+            
+            let dateItems = '';
+            if (settings.showHebrewDate) {
+                dateItems += `<div class="date-item">Hebrew: ${getHebrewDate()}</div>`;
+            }
+            if (settings.showGregorianDate) {
+                dateItems += `<div class="date-item">${gregorianDate}</div>`;
+            }
+            if (settings.showMoonPrayer) {
+                dateItems += `<div class="date-item">Moon Prayer: 🌙</div>`;
+            }
+            
+            return `
+                <div class="card date-card" style="order: ${settings.order}">
+                    <div class="card-title">Today's Date</div>
+                    <div class="date-info">
+                        ${dateItems}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create prayer time cards (Daily/Shabbat/Holiday)
+        function createPrayerCard(settings, title) {
+            if (!settings.visible) return '';
+            
+            let fieldsHtml = '';
+            settings.fields.forEach(field => {
+                if (!isWithinSchedule(field.scheduling)) return;
+                
+                if (field.displayType === 'key-value') {
+                    let timeValue;
+                    if (field.timeSettings) {
+                        // Generate random time for timeSettings
+                        timeValue = generateRandomTime();
+                    } else {
+                        // Use predefined value
+                        timeValue = field.value;
+                    }
+                    
+                    fieldsHtml += `
+                        <div class="prayer-time">
+                            <span class="prayer-name">${field.key}</span>
+                            <span class="prayer-hour">${timeValue}</span>
+                        </div>
+                    `;
+                } else if (field.displayType === 'text') {
+                    fieldsHtml += `<div class="text-field">${field.text}</div>`;
+                }
+            });
+            
+            if (!fieldsHtml) return '';
+            
+            return `
+                <div class="card prayer-card" style="order: ${settings.order}">
+                    <div class="card-title">${title}</div>
+                    ${fieldsHtml}
+                </div>
+            `;
+        }
+
+        // Create contact card
+        function createContactCard(settings) {
+            if (!settings.visible) return '';
+            
+            let contactItems = '';
+            
+            if (settings.whatsappGroup.enabled) {
+                contactItems += `
+                    <a href="${settings.whatsappGroup.link}" class="contact-item" target="_blank">
+                        <img src="${settings.whatsappGroup.icon}" alt="WhatsApp" class="contact-icon">
+                        WhatsApp Group
+                    </a>
+                `;
+            }
+            
+            if (settings.whatsappPrivate.enabled) {
+                contactItems += `
+                    <a href="${settings.whatsappPrivate.link}" class="contact-item" target="_blank">
+                        <img src="${settings.whatsappPrivate.icon}" alt="WhatsApp" class="contact-icon">
+                        WhatsApp Message
+                    </a>
+                `;
+            }
+            
+            if (settings.phone.enabled) {
+                contactItems += `
+                    <a href="${settings.phone.link}" class="contact-item">
+                        <span class="contact-icon">${settings.phone.icon}</span>
+                        Call Us
+                    </a>
+                `;
+            }
+            
+            if (settings.waze.enabled) {
+                contactItems += `
+                    <a href="${settings.waze.link}" class="contact-item" target="_blank">
+                        <span class="contact-icon">${settings.waze.icon}</span>
+                        Navigate with Waze
+                    </a>
+                `;
+            }
+            
+            return `
+                <div class="card contact-card" style="order: ${settings.order}">
+                    <div class="card-title">Contact</div>
+                    <div class="contact-methods">
+                        ${contactItems}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create gallery card with carousel
+        function createGalleryCard(settings) {
+            if (!settings.visible || !settings.images.length) return '';
+            
+            let slides = '';
+            let dots = '';
+            
+            settings.images.forEach((image, index) => {
+                slides += `
+                    <div class="carousel-slide">
+                        <img src="${image.url}" alt="${image.caption}">
+                        <div class="carousel-caption">${image.caption}</div>
+                    </div>
+                `;
+                dots += `<div class="carousel-dot ${index === 0 ? 'active' : ''}" onclick="goToSlide(${index})"></div>`;
+            });
+            
+            return `
+                <div class="card gallery-card" style="order: ${settings.order}">
+                    <div class="card-title">Gallery</div>
+                    <div class="carousel-container">
+                        <div class="carousel-wrapper" id="carousel-wrapper">
+                            ${slides}
+                        </div>
+                        <button class="carousel-nav carousel-prev" onclick="previousSlide()">‹</button>
+                        <button class="carousel-nav carousel-next" onclick="nextSlide()">›</button>
+                    </div>
+                    <div class="carousel-dots">
+                        ${dots}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Create rental card
+        function createRentalCard(settings) {
+            if (!settings.visible || !settings.spaces.length) return '';
+            
+            let optionsHtml = '<option value="">Select a space...</option>';
+            settings.spaces.forEach((space, index) => {
+                optionsHtml += `<option value="${index}">${space.name}</option>`;
+            });
+            
+            return `
+                <div class="card rental-card" style="order: ${settings.order}">
+                    <div class="card-title">Rental Spaces</div>
+                    
+                    <select class="rental-dropdown" id="spaceSelector" onchange="showSpaceInfo(this.value)">
+                        ${optionsHtml}
+                    </select>
+                    
+                    <div class="rental-info" id="spaceInfo">
+                        <!-- Space info will be displayed here -->
+                    </div>
+                    
+                    <div class="rental-form" id="rentalForm">
+                        <div class="form-group">
+                            <label class="form-label" for="customerName">Full Name</label>
+                            <input type="text" class="form-input" id="customerName" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="customerPhone">Phone Number</label>
+                            <input type="tel" class="form-input" id="customerPhone" placeholder="Enter your phone number" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="eventDate">Event Date</label>
+                            <input type="date" class="form-input" id="eventDate" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="eventTime">Event Time</label>
+                            <input type="time" class="form-input" id="eventTime" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="eventDetails">Event Details</label>
+                            <textarea class="form-input" id="eventDetails" rows="3" placeholder="Describe your event..." required></textarea>
+                        </div>
+                        
+                        <button type="button" class="submit-btn" onclick="submitRentalRequest()">Submit Rental Request</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Show space information and form
+        function showSpaceInfo(spaceIndex) {
+            const spaceInfo = document.getElementById('spaceInfo');
+            const rentalForm = document.getElementById('rentalForm');
+            
+            if (spaceIndex === '' || !configData.rentalSettings.spaces[spaceIndex]) {
+                spaceInfo.classList.remove('show');
+                rentalForm.classList.remove('show');
+                return;
+            }
+            
+            const space = configData.rentalSettings.spaces[spaceIndex];
+            
+            spaceInfo.innerHTML = `
+                <div class="rental-detail">
+                    <strong>Space:</strong> ${space.name}
+                </div>
+                <div class="rental-detail">
+                    <strong>Maximum Attendees:</strong> ${space.capacity}
+                </div>
+                <div class="rental-detail">
+                    <strong>Available Hours:</strong> ${space.availableHours}
+                </div>
+            `;
+            
+            spaceInfo.classList.add('show');
+            rentalForm.classList.add('show');
+            
+            // Set minimum date to today
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('eventDate').setAttribute('min', today);
+        }
+
+        // Submit rental request
+        function submitRentalRequest() {
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const date = document.getElementById('eventDate').value;
+            const time = document.getElementById('eventTime').value;
+            const details = document.getElementById('eventDetails').value;
+            const spaceIndex = document.getElementById('spaceSelector').value;
+            
+            if (!name || !phone || !date || !time || !details || !spaceIndex) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            const space = configData.rentalSettings.spaces[spaceIndex];
+            
+            // Here you would normally send the data to a server
+            // For demo purposes, we'll just show an alert
+            alert(`Rental request submitted successfully!\n\nSpace: ${space.name}\nName: ${name}\nPhone: ${phone}\nDate: ${date}\nTime: ${time}\nDetails: ${details}\n\nWe will contact you soon to confirm your booking.`);
+            
+            // Reset form
+            document.getElementById('customerName').value = '';
+            document.getElementById('customerPhone').value = '';
+            document.getElementById('eventDate').value = '';
+            document.getElementById('eventTime').value = '';
+            document.getElementById('eventDetails').value = '';
+            document.getElementById('spaceSelector').value = '';
+            document.getElementById('spaceInfo').classList.remove('show');
+            document.getElementById('rentalForm').classList.remove('show');
+        }
+
+        // Carousel functions
+        function nextSlide() {
+            if (!configData.gallerySettings.images.length) return;
+            carouselIndex = (carouselIndex + 1) % configData.gallerySettings.images.length;
+            updateCarousel();
+        }
+
+        function previousSlide() {
+            if (!configData.gallerySettings.images.length) return;
+            carouselIndex = carouselIndex === 0 ? configData.gallerySettings.images.length - 1 : carouselIndex - 1;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            carouselIndex = index;
+            updateCarousel();
+        }
+
+        function updateCarousel() {
+            const wrapper = document.getElementById('carousel-wrapper');
+            const dots = document.querySelectorAll('.carousel-dot');
+            
+            if (wrapper) {
+                wrapper.style.transform = `translateX(-${carouselIndex * 100}%)`;
+            }
+            
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === carouselIndex);
+            });
+        }
+
+        // Generate the entire website
+        function generateWebsite() {
+            if (!configData) return;
+            
+            // Get all cards and sort by order
+            const cards = [
+                { order: configData.logoSettings.order, html: createLogoCard(configData.logoSettings) },
+                { order: configData.dateSettings.order, html: createDateCard(configData.dateSettings) },
+                { order: configData.dailySettings.order, html: createPrayerCard(configData.dailySettings, 'Daily Prayers') },
+                { order: configData.shabbatSettings.order, html: createPrayerCard(configData.shabbatSettings, 'Shabbat') },
+                { order: configData.holidaySettings.order, html: createPrayerCard(configData.holidaySettings, 'Holidays') },
+                { order: configData.contactSettings.order, html: createContactCard(configData.contactSettings) },
+                { order: configData.gallerySettings.order, html: createGalleryCard(configData.gallerySettings) },
+                { order: configData.rentalSettings.order, html: createRentalCard(configData.rentalSettings) }
+            ];
+            
+            // Sort by order and filter out empty cards
+            cards.sort((a, b) => a.order - b.order);
+            const htmlContent = cards.filter(card => card.html).map(card => card.html).join('');
+            
+            document.getElementById('website-container').innerHTML = htmlContent;
+        }
+
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', loadConfig);
+    </script>
+</body>
+</html>

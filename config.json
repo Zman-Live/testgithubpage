@@ -1,0 +1,203 @@
+{
+  "templateId": "traditional",
+  "logoSettings": {
+    "visible": true,
+    "order": 1,
+    "logoUrl": "https://example.com/beth-shalom-logo.png"
+  },
+  "dateSettings": {
+    "visible": true,
+    "order": 2,
+    "showHebrewDate": true,
+    "showGregorianDate": true,
+    "showMoonPrayer": true
+  },
+  "dailySettings": {
+    "visible": true,
+    "order": 3,
+    "fields": [
+      {
+        "key": "Shacharit",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunrise",
+          "offset": -15,
+          "rounding": "down"
+        },
+        "scheduling": {
+          "startDate": "2025-06-01",
+          "endDate": "2025-08-31"
+        }
+      },
+      {
+        "key": "Mincha",
+        "displayType": "key-value",
+        "value": "18:30",
+        "scheduling": null
+      },
+      {
+        "key": "Maariv",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunset",
+          "offset": 30,
+          "rounding": "none"
+        },
+        "scheduling": null
+      },
+      {
+        "displayType": "text",
+        "text": "Summer Schedule Active",
+        "scheduling": {
+          "startDate": "2025-06-15",
+          "endDate": "2025-09-15"
+        }
+      }
+    ]
+  },
+  "shabbatSettings": {
+    "visible": true,
+    "order": 4,
+    "fields": [
+      {
+        "key": "Kabbalat Shabbat",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunset",
+          "offset": -20,
+          "rounding": "down"
+        },
+        "scheduling": null
+      },
+      {
+        "key": "Shacharit",
+        "displayType": "key-value",
+        "value": "09:00",
+        "scheduling": null
+      },
+      {
+        "key": "Mincha",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunset",
+          "offset": -45,
+          "rounding": "down"
+        },
+        "scheduling": null
+      },
+      {
+        "key": "Havdalah",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunset",
+          "offset": 50,
+          "rounding": "up"
+        },
+        "scheduling": null
+      }
+    ]
+  },
+  "holidaySettings": {
+    "visible": true,
+    "order": 5,
+    "fields": [
+      {
+        "displayType": "text",
+        "text": "Special Holiday Services",
+        "scheduling": {
+          "startDate": "2025-09-15",
+          "endDate": "2025-10-15"
+        }
+      },
+      {
+        "key": "Rosh Hashanah Services",
+        "displayType": "key-value",
+        "timeSettings": {
+          "zmanType": "sunrise",
+          "offset": 45,
+          "rounding": "up"
+        },
+        "scheduling": {
+          "startDate": "2025-09-15",
+          "endDate": "2025-09-17"
+        }
+      }
+    ]
+  },
+  "contactSettings": {
+    "visible": true,
+    "order": 6,
+    "whatsappGroup": {
+      "enabled": true,
+      "link": "https://web.whatsapp.com/",
+      "icon": "https://lrrwcfctpgrhfjrlornj.supabase.co/storage/v1/object/public/icons//whatsapp.png"
+    },
+    "whatsappPrivate": {
+      "enabled": true,
+      "link": "https://web.whatsapp.com/",
+      "icon": "https://lrrwcfctpgrhfjrlornj.supabase.co/storage/v1/object/public/icons//whatsapp.png"
+    },
+    "phone": {
+      "enabled": true,
+      "link": "tel:+972528314347",
+      "icon": "phone-icon-url"
+    },
+    "waze": {
+      "enabled": true,
+      "link": "https://ul.waze.com/ul?ll=32.07159274%2C34.84708786",
+      "icon": "map-icon-url"
+    }
+  },
+  "gallerySettings": {
+    "visible": true,
+    "order": 7,
+    "images": [
+      {
+        "id": "img1",
+        "url": "https://example.com/sanctuary.jpg",
+        "caption": "Our beautiful sanctuary"
+      },
+      {
+        "id": "img2",
+        "url": "https://example.com/torah-reading.jpg",
+        "caption": "Torah reading ceremony"
+      },
+      {
+        "id": "img3",
+        "url": "https://example.com/community-dinner.jpg",
+        "caption": "Community Shabbat dinner"
+      },
+      {
+        "id": "img4",
+        "url": "https://example.com/bar-mitzvah.jpg",
+        "caption": "Bar Mitzvah celebration"
+      },
+      {
+        "id": "img5",
+        "url": "https://example.com/high-holidays.jpg",
+        "caption": "High Holiday services"
+      }
+    ]
+  },
+  "rentalSettings": {
+    "visible": true,
+    "order": 8,
+    "spaces": [
+      {
+        "name": "Main Sanctuary",
+        "capacity": 250,
+        "availableHours": "Sunday-Thursday: 9:00-22:00, Friday: 9:00-15:00"
+      },
+      {
+        "name": "Social Hall",
+        "capacity": 100,
+        "availableHours": "Sunday-Thursday: 10:00-23:00, Friday: 10:00-16:00"
+      },
+      {
+        "name": "Conference Room",
+        "capacity": 25,
+        "availableHours": "Sunday-Friday: 8:00-20:00"
+      }
+    ]
+  }
+}
